@@ -139,16 +139,17 @@ class wpide
 		//hide the update nag
 		add_action('admin_menu', array( &$this, 'hide_wp_update_nag' ));
 	}
+    
 
-	public function hide_wp_sidebar_nav($classes) {
-		global $hook_suffix;
-		
-		if ( apply_filters( 'wpide_sidebar_folded', $hook_suffix ===$this->menu_hook ) ) {
-			return str_replace("auto-fold", "", $classes) . ' folded';
-		}
-		return $classes;
-	}
+    public function hide_wp_sidebar_nav($classes) {
+        global $hook_suffix;
 
+        if ( apply_filters( 'wpide_sidebar_folded', $hook_suffix === $this->menu_hook ) ) {
+            return str_replace("auto-fold", "", $classes) . ' folded';
+        }
+        return $classes;
+    }
+    
     public function hide_wp_update_nag() {
         remove_action( 'admin_notices', 'update_nag', 3 );
     }
